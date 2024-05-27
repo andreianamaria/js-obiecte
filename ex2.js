@@ -6,34 +6,38 @@
 // Output: { a: 1 }
 
 const removeCertainProperty = (obj, propName) => {
-  if (obj.hasOwnProperty(propName)) {
-    delete obj[propName];
+  const copyObj = { ...obj };
+  if (copyObj.hasOwnProperty(propName)) {
+    delete copyObj[propName];
   }
+  return copyObj;
 }
 
 const removeProp = (obj, propName) => {
-  for (const prop in obj) {
+  let copyObj = Object.assign({}, obj);
+  for (const prop in copyObj) {
     if (prop === propName) {
-      delete obj[propName];
+      delete copyObj[propName];
     }
   }
+  return copyObj;
 }
 
 const obj = { a: 1, b: 2 };
 const obj2 = { name: 'Popescu', age: 38, job: 'Programmer'};
 
-removeCertainProperty(obj, 'b');
-removeCertainProperty(obj2, 'cici');
+console.log(removeCertainProperty(obj, 'b'));
+console.log(removeCertainProperty(obj2, 'cici'));
 
-console.log(obj);
-console.log(obj2);
+// console.log(obj);
+// console.log(obj2);
 
 // met 2
 const objOne = { a: 1, b: 2 };
 const objTwo = { name: 'Popescu', age: 38, job: 'Programmer'};
 
-removeProp(objOne, 'a');
-removeProp(objTwo, 'age');
+console.log(removeProp(objOne, 'a'));
+console.log(removeProp(objTwo, 'age'));
 
-console.log(objOne);
-console.log(objTwo);
+// console.log(objOne);
+// console.log(objTwo);
