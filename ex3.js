@@ -8,11 +8,12 @@
 // Dacă cartea a fost citită, se afișează cu ajutorul functiei console.log un mesaj de tipul “Ai citit deja “Hobbitul” de J.R.R. Tolkien”, iar 
 // dacă nu, se afișează un mesaj de tipul “Trebuie să citești “Hobbitul” de J.R.R. Tolkien”.
 
-const outputMessage = (title, author, isRead) => {
-    if (isRead) {
-      return `Ai citit deja "${title}", de ${author}`;
+const outputMessage = (book) => {
+  const info = `"${book.title}", de ${book.author}`;
+    if (book.isRead) {
+      return `Ai citit deja ${info}`;
     }
-    return `Trebuie să citești "${title}", de ${author}`;
+    return `Trebuie să citești ${info}`;
   }
   
   const iterateBooks = (books) => {
@@ -21,7 +22,7 @@ const outputMessage = (title, author, isRead) => {
         && book.hasOwnProperty('author') 
         && book.hasOwnProperty('isRead')) {
         console.log(`Cartea "${book.title}" de ${book.author}`);
-        console.log(outputMessage(book.title, book.author, book.isRead));
+        console.log(outputMessage(book));
       }
     }
   }
